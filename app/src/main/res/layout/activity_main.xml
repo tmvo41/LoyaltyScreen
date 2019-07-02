@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@{viewmodel.firstName}"
+                    android:text="@={viewmodel.firstName}"
 
             />
         </com.google.android.material.textfield.TextInputLayout>
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@{viewmodel.lastName}"
+                    android:text="@={viewmodel.lastName}"
             />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:text="@{viewmodel.email}"
+                android:text="@={viewmodel.email}"
             />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:text="@{viewmodel.phone}"
+                android:text="@={viewmodel.phone}"
                 android:maxLength="14"
             />
         </com.google.android.material.textfield.TextInputLayout>
@@ -104,11 +104,15 @@
                 android:id="@+id/bt_submit"
                 android:text="@string/submit"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:enabled="@{viewmodel.enableButton}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_phonenumber"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.25"/>
+                app:layout_constraintVertical_bias="0.25"
+
+
+        />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

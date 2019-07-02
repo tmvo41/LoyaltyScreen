@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.tmv.loyaltyscreen.R
 import com.tmv.loyaltyscreen.databinding.ActivityMainBinding
@@ -42,6 +43,12 @@ class MainActivity : AppCompatActivity() {
 
         et_email.addTextChangedListener(emailNameListener)
         binding.viewmodel = mainViewModel
+
+        val buttonClick = object: View.OnClickListener{
+            override fun onClick(v: View?) {
+
+            }
+        }
     }
 
     var firstNameListener = object: TextWatcher {
@@ -51,8 +58,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            if(mainViewModel.isBlank(s.toString())) {
-                mainViewModel.firstNameIsError.value = true
+            if(mainViewModel.isFirstNameEmpty()) {
                 til_firstname.error = emptyErrorMessage
             }
             else if( ! mainViewModel.isAlphaOnly(s.toString())) {
@@ -62,6 +68,8 @@ class MainActivity : AppCompatActivity() {
             else {
                 mainViewModel.firstNameIsError.value = false
             }
+
+            mainViewModel.checkEnableButton()
         }
     }
 
@@ -72,8 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            if( mainViewModel.isBlank(s.toString())) {
-                mainViewModel.lastNameIsError.value = true
+            if( mainViewModel.isLastNameEmpty()) {
                 til_lastname.error = emptyErrorMessage
             }
             else if( ! mainViewModel.isAlphaOnly(s.toString())) {
@@ -82,6 +89,8 @@ class MainActivity : AppCompatActivity() {
             }
             else
                 mainViewModel.lastNameIsError.value = false
+
+            mainViewModel.checkEnableButton()
         }
     }
     var phoneNameListener = object: TextWatcher {
@@ -97,6 +106,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 else
                     mainViewModel.phoneIsError.value = false
+
+            mainViewModel.checkEnableButton()
         }
     }
 
@@ -107,8 +118,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            if(mainViewModel.isBlank(s.toString())) {
-                mainViewModel.emailIsError.value = true
+            if(mainViewModel.isEmailEmpty()) {
                 til_email.error = emptyErrorMessage
             }
             else if(! mainViewModel.isEmail(s.toString())) {
@@ -117,6 +127,8 @@ class MainActivity : AppCompatActivity() {
             }
             else
                 mainViewModel.emailIsError.value = false
+
+            mainViewModel.checkEnableButton()
         }
     }
 }

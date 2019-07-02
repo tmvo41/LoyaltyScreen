@@ -21,6 +21,16 @@ class MainViewModel:ViewModel() {
 
     var phoneIsError:MutableLiveData<Boolean> = MutableLiveData()
 
+    var enableButton:MutableLiveData<Boolean> = MutableLiveData()
+
+    init{
+        firstNameIsError.value = false
+        lastNameIsError.value = false
+        phoneIsError.value = false
+        emailIsError.value = false
+        enableButton.value = false
+    }
+
     fun isAlphaOnly(name: String): Boolean {//If string has only letters
         return name.matches("[a-zA-Z]+".toRegex())
     }
@@ -42,8 +52,54 @@ class MainViewModel:ViewModel() {
         return phone.matches(numberPattern1.toRegex()) || phone.matches(numberPattern2.toRegex())
     }
 
-    fun isBlank(input:String):Boolean{
+    fun isFirstNameEmpty():Boolean{
+        var isEmpty:Boolean = false
+        if(firstName.value != null) {
+             isEmpty = firstName.value!!.isBlank()
+        }
+        firstNameIsError.value = isEmpty
 
-        return input.toString().isBlank()
+        return isEmpty
     }
+    fun isLastNameEmpty():Boolean{
+        var isEmpty:Boolean = false
+        if(lastName.value != null) {
+            isEmpty = lastName.value!!.isBlank()
+        }
+        lastNameIsError.value = isEmpty
+
+        return isEmpty
+    }
+    fun isEmailEmpty():Boolean{
+        var isEmpty:Boolean = false
+        if(email.value != null) {
+            isEmpty = email.value!!.isBlank()
+        }
+        emailIsError.value = isEmpty
+
+        return isEmpty
+    }
+
+    fun checkEnableButton(){
+//        enableButton.value =
+//            (!emailIsError.value!!) &&
+//                (!lastNameIsError.value!!) &&
+//                (!firstNameIsError.value!!) &&
+//                (!phoneIsError.value!!) &&
+//                (!email.value.isNullOrBlank()) &&
+//                (!firstName.value.isNullOrBlank()) &&
+//                (!lastName.value.isNullOrBlank())
+
+
+            var x1 = !emailIsError.value!!
+            var x2 = !lastNameIsError.value!!
+            var x3 = !firstNameIsError.value!!
+            var x4 =  !phoneIsError.value!!
+            var x5 = !email.value.isNullOrBlank()
+            var x6 = !firstName.value.isNullOrBlank()
+            var x7 = !lastName.value.isNullOrBlank()
+
+        enableButton.value = x1 && x2 && x3 && x4 && x5 && x6 && x7
+    }
+
 }
