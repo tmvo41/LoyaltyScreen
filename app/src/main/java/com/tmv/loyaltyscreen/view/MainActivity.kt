@@ -1,5 +1,6 @@
 package com.tmv.loyaltyscreen.view
 
+import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mainViewModel:MainViewModel
 
+    lateinit var dialog:AlertDialog
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +47,21 @@ class MainActivity : AppCompatActivity() {
         et_email.addTextChangedListener(emailNameListener)
         binding.viewmodel = mainViewModel
 
+        var builder = AlertDialog.Builder(this)
+
+        builder.setTitle("You have successfully registered")
+
+        builder.setNeutralButton("close", null)
+
+        dialog = builder.create()
+
         val buttonClick = object: View.OnClickListener{
             override fun onClick(v: View?) {
-
+                dialog.show()
             }
         }
+
+        bt_submit.setOnClickListener(buttonClick)
     }
 
     var firstNameListener = object: TextWatcher {

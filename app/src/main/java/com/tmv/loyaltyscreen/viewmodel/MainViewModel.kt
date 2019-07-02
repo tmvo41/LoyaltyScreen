@@ -81,25 +81,13 @@ class MainViewModel:ViewModel() {
     }
 
     fun checkEnableButton(){
-//        enableButton.value =
-//            (!emailIsError.value!!) &&
-//                (!lastNameIsError.value!!) &&
-//                (!firstNameIsError.value!!) &&
-//                (!phoneIsError.value!!) &&
-//                (!email.value.isNullOrBlank()) &&
-//                (!firstName.value.isNullOrBlank()) &&
-//                (!lastName.value.isNullOrBlank())
-
-
-            var x1 = !emailIsError.value!!
-            var x2 = !lastNameIsError.value!!
-            var x3 = !firstNameIsError.value!!
-            var x4 =  !phoneIsError.value!!
-            var x5 = !email.value.isNullOrBlank()
-            var x6 = !firstName.value.isNullOrBlank()
-            var x7 = !lastName.value.isNullOrBlank()
-
-        enableButton.value = x1 && x2 && x3 && x4 && x5 && x6 && x7
+        enableButton.value =
+            (!emailIsError.value!!) &&
+                (!lastNameIsError.value!!) &&
+                (!firstNameIsError.value!!) &&
+                (!phoneIsError.value!!) &&
+                (!email.value.isNullOrBlank()) &&
+                (!firstName.value.isNullOrBlank()) &&
+                (!lastName.value.isNullOrBlank())
     }
-
 }
