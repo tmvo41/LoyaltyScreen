@@ -1,15 +1,7 @@
 package com.tmv.loyaltyscreen.viewmodel
 
-
-import android.app.Application
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-
-
-import java.util.*
 
 class MainViewModel:ViewModel() {
 
@@ -29,18 +21,29 @@ class MainViewModel:ViewModel() {
 
     var phoneIsError:MutableLiveData<Boolean> = MutableLiveData()
 
+    fun isAlphaOnly(name: String): Boolean {//If string has only letters
+        return name.matches("[a-zA-Z]+".toRegex())
+    }
 
+    fun isEmail(email:String): Boolean{
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
 
+        return  email.matches(emailPattern.toRegex())
+    }
 
+    fun isValidPhoneInput(phone:String):Boolean {
 
+        if(phone.isBlank())
+            return true
 
+        val numberPattern1 = "((\\(\\d{3}\\)( |-)?)|(\\d{3}-))\\d{3}-\\d{4}"
 
+        val numberPattern2 = "\\d{10}"
+        return phone.matches(numberPattern1.toRegex()) || phone.matches(numberPattern2.toRegex())
+    }
 
+    fun isBlank(input:String):Boolean{
 
-
-
-
-
-
-
+        return input.toString().isBlank()
+    }
 }
