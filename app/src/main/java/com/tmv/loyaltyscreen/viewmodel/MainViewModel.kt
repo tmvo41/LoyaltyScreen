@@ -1,22 +1,43 @@
 package com.tmv.loyaltyscreen.viewmodel
 
+
+import android.app.Application
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MainViewModel: ViewModel {
 
-    var firstName:String = ""
+import java.util.*
 
-    var lastName:String = ""
+class MainViewModel:ViewModel() {
 
-    var email:String = ""
+    var firstName:MutableLiveData<String> = MutableLiveData()
 
-    var phone:String = ""
+    var firstNameIsError: MutableLiveData<Boolean> = MutableLiveData()
 
-    constructor() : super()
+    var lastName:MutableLiveData<String> = MutableLiveData()
 
-    fun isAlphaOnly(name: String): Boolean {//If string has only letters
-        return name.matches("[a-zA-Z]+".toRegex())
-    }
+    var lastNameIsError:MutableLiveData<Boolean> = MutableLiveData()
+
+    var email:MutableLiveData<String> = MutableLiveData()
+
+    var emailIsError:MutableLiveData<Boolean> = MutableLiveData()
+
+    var phone:MutableLiveData<String> = MutableLiveData()
+
+    var phoneIsError:MutableLiveData<Boolean> = MutableLiveData()
+
+
+
+
+
+
+
+
+
+
 
 
 
